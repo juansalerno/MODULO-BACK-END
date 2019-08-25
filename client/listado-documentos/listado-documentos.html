@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portal de documentación</title>
+</head>
+
+<body>
+    <h1>Formulario de ingreso de documentos</h1>
+
+    <p>Ingrese los datos solicitados y luego presione en el boton agregar</p>
+
+    <input type="text" name="titulo" id="input-titulo" placeholder="Titulo">
+
+    <input type="text" name="autor" id="input-autor" placeholder="Autor">
+
+    <input type="text" name="temas" id="input-temas" placeholder="Temas separando con coma (,)">
+
+    <input type="text" name="fecha" id="input-fecha" placeholder="Fecha (mm/dd/aaaa)">
+
+    <button id="btnAgregar">Agregar</button>
+    <div></div>
+
+    <table>
+        <thead>Listado: </thead>
+        <tbody id='tblDocumentos'></tbody>
+    </table>
+
+    <div>
+        <p>Consultas:</p>
+    </div>
+    <div>Autor con mas documentos: <button id="verAutorMasDocs">Ver</button></div>
+    <div id="autor-mas-docs"></div>
+
+    <div>Documentos de un tema determinado: <input type="text" id="input-tema-det-analisis"> <button
+            id="verDocsDeTema">Ver</button></div>
+    <div id="docs-de-un-tema"></div>
+
+    <div>Tema más tratado: <button id="verTemaMasTratado">Ver</button></div>
+    <div id="tema-mas-tratado"></div>
+
+    <div>Título más moderno: <button id="verTituloMasModerno">Ver</button></div>
+    <div id="titulo-mas-moderno"></div>
+
+    <div>Título más antiguo: <button id="verTituloMasAntiguo">Ver</button></div>
+    <div id="titulo-mas-antiguo"></div>
+
+    <div>Cantidad de documentos con más de un año de antiguedad (analizandolo el 08/24/2019): <button id="verDocsAntiguosMasdeUnAño">Ver</button>
+    </div>
+    <div id="docs-antiguos-mas-de-un-año"></div>
+
+    <script src="./listado-documentos.js"></script>
+
+</body>
+
+</html>

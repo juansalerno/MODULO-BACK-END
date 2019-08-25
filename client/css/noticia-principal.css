@@ -1,0 +1,119 @@
+.navbar-dark{
+    background-color: red;
+}
+.color-letra{
+    color: white;
+}
+.estilo-boton{
+    border: solid 1px white;
+    color: white;
+}
+.titulo-principal{
+    text-align: center;
+    font-weight: bold;
+    color: red;
+    font-size: 400%;
+    padding: 4%;
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.margen-noticia{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.size-column{
+    content: 100%;
+}
+
+.h1{
+    
+    margin-bottom: 3%;
+}
+
+.copete{
+    font-weight: bold;
+}
+.mb-0{
+
+    font-weight: bold;
+}
+.h1{
+   
+    text-align: center;
+    font-size: 70px;
+    margin-bottom: 3%;
+}
+.h3{
+    margin-bottom:50px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.cita{
+    border: solid 2px black;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 3px;
+}
+.btn-primary{
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+.justificado{
+    text-align: justify;
+}
+.centrado{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+.tamaño-carousel{
+    width: 80%;
+    margin: auto;
+}
+.formulario{
+    margin-left: 50px;
+}
+.imagen{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+}
+.imagen-carousel{
+    max-width: 50%;
+    max-height: 50%;
+    width: 100%;
+   height: 100%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+
+
+.estilo-formulario{
+    padding-right: 4%;
+}
+
+p::first-letter{
+    font-size: 130%;
+    font-weight: bold;
+    color: orangered;
+}
+
+p::selection{
+    background-color: red;
+    color: white;
+}
+
+a.menu-siguiente{
+    float: right;
+}
+
+.menu-links-atras-siguiente{
+    margin: 1% 3%;
+    
+}
+
+

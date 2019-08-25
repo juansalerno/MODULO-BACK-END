@@ -1,0 +1,55 @@
+.navbar-dark{
+    background-color: red;
+}
+.color-letra{
+    color: white;
+}
+.estilo-boton{
+    border: solid 1px white;
+    color: white;
+}
+.titulo-principal{
+    text-align: center;
+    font-weight: bold;
+    color: red;
+    font-size: 400%;
+    margin: 4%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.margen-noticia{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.size-column{
+    content: 100%;
+}
+.btn-primary{
+    background-color: red;
+    color: white;
+}
+
+.btn-primary:hover{
+    background-color: rgb(235, 111, 10)
+}
+
+.btn-primary:visited{
+    background-color: rgb(90, 9, 4)
+}
+
+.estilo-publicidad{
+    border: solid 1px black;
+}
+.tamaño-pub{
+    width: 100%;
+    height: 100%;
+    
+}
+
+span{
+    color: green;
+}
+
+p span{
+    color: red;
+}
