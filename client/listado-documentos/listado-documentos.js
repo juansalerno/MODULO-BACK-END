@@ -79,7 +79,7 @@ function mostrarTablaDocumentos() {
 
 
 function verAutorConMasDocumentos() {
-    let frecuenciaElemento = 0;
+    let frecuenciaElemento = 1;
     let maximaFrecuenciaElemento = 1;
     let autorConMasDocumentos = listadoDocumentos[0].autor;
     for (let i = 0; i < listadoDocumentos.length; i++) {
@@ -92,7 +92,7 @@ function verAutorConMasDocumentos() {
                 autorConMasDocumentos = listadoDocumentos[i].autor;
             }
         }
-        frecuenciaElemento = 0;
+        frecuenciaElemento = 1;
     }
 
     document.querySelector('#autor-mas-docs').innerHTML = `El autor con más documentos es: ${autorConMasDocumentos}`
@@ -109,15 +109,15 @@ function verDocsDeUnTemaElegido() {
             }
         }
     }
-document.querySelector('#docs-de-un-tema').innerHTML = `Listado de títulos de los Documentos que poseen el tema elegido: ${docsDelTema}`;
+    document.querySelector('#docs-de-un-tema').innerHTML = `Listado de títulos de los Documentos que poseen el tema elegido: ${docsDelTema}`;
 }
 
 
 function verTituloMasModerno() {
     let maxMilisegundosSince1970 = 0;
     let tituloMasModerno;
-    for(let r of listadoDocumentos) {
-        if((new Date(r.fecha).getTime()) > maxMilisegundosSince1970) {
+    for (let r of listadoDocumentos) {
+        if ((new Date(r.fecha).getTime()) > maxMilisegundosSince1970) {
             maxMilisegundosSince1970 = new Date(r.fecha).getTime();
             tituloMasModerno = r.titulo;
         }
@@ -129,8 +129,8 @@ function verTituloMasModerno() {
 function verTituloMasAntiguo() {
     let minMilisegundosSince1970 = new Date('08/24/2019').getTime();
     let tituloMasAntiguo;
-    for(let r of listadoDocumentos) {
-        if((new Date(r.fecha).getTime()) < minMilisegundosSince1970) {
+    for (let r of listadoDocumentos) {
+        if ((new Date(r.fecha).getTime()) < minMilisegundosSince1970) {
             minMilisegundosSince1970 = new Date(r.fecha).getTime();
             tituloMasAntiguo = r.titulo;
         }
@@ -143,17 +143,53 @@ function verCantDocsMasDeUnAñoAntiguedad() {
     let milisegundosAñoAnterior = new Date('08/24/2018').getTime();
     let contador = 0;
     //let docsAntiguosMasDeUnAño = []
-    for(let r of listadoDocumentos) {
-        if((new Date(r.fecha).getTime()) < milisegundosAñoAnterior) {
+    for (let r of listadoDocumentos) {
+        if ((new Date(r.fecha).getTime()) < milisegundosAñoAnterior) {
             contador++
-         //   docsAntiguosMasDeUnAño.push(r);
-        }   
+            //   docsAntiguosMasDeUnAño.push(r);
+        }
     }
     document.querySelector('#docs-antiguos-mas-de-un-año').innerHTML = `La cantidad de documentos es: ${contador} `
     return contador
-    
+
 }
 
+//funcion auxiliar para crear un arreglo simple sólo de temas para simplificar luego analizar cual es el repetido mas veces
+function crearArregloNuevoSoloDeTemas(arregloObjetos) {
+    let arregloSoloTemas = [];
+    let temaFormateado;
+    for (let r of arregloObjetos) {
+        for (let i = 0; i < (r.temas).length; i++) {
+            temaFormateado = (r.temas[i]).trim().toLowerCase();
+            arregloSoloTemas.push(temaFormateado);
+        }
+    }
+    return arregloSoloTemas;
+}
+
+
 function verTemaMasTratado() {
+
+    let arregloGlobalDeTemas = crearArregloNuevoSoloDeTemas(listadoDocumentos);
+
+    let frecuenciaElemento = 1;
+    let maxFrecuenciaElem = 1;
+    let temaMasTratado = arregloGlobalDeTemas[0];
     
+    // se analiza el arreglo de temas para ver el más repetido (idem al caso de autor con más documentos)
+    for (let k = 0; k < arregloGlobalDeTemas.length; k++) {
+        for (let j = k; j < arregloGlobalDeTemas.length; j++) {
+            if (arregloGlobalDeTemas[k] == arregloGlobalDeTemas[j]) {
+                frecuenciaElemento++
+            }
+            if (frecuenciaElemento > maxFrecuenciaElem) {
+                maxFrecuenciaElem = frecuenciaElemento
+                temaMasTratado = arregloGlobalDeTemas[k];
+            }
+        }
+        frecuenciaElemento = 1;
+    }
+
+    document.querySelector('#tema-mas-tratado').innerHTML = `El tema más tratado es: ${temaMasTratado}`
+    return temaMasTratado
 }
