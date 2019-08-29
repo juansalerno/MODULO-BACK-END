@@ -109,7 +109,8 @@ function verDocsDeUnTemaElegido() {
             }
         }
     }
-    document.querySelector('#docs-de-un-tema').innerHTML = `Listado de títulos de los Documentos que poseen el tema elegido: ${docsDelTema}`;
+    document.querySelector('#docs-de-un-tema').innerHTML 
+    = `Listado de títulos de los Documentos que poseen el tema elegido:<br> ${docsDelTema}`;
 }
 
 
@@ -135,7 +136,7 @@ function verTituloMasAntiguo() {
             tituloMasAntiguo = r.titulo;
         }
     }
-    document.querySelector('#titulo-mas-antiguo').innerHTML = `El titulo más moderno es: ${tituloMasAntiguo}`;
+    document.querySelector('#titulo-mas-antiguo').innerHTML = `El titulo más antiguo es: ${tituloMasAntiguo}`;
     return tituloMasAntiguo;
 }
 

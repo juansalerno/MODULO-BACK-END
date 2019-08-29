@@ -1,0 +1,21 @@
+{
+    "response": "OK",
+    "compras": [
+        {
+            "producto": "Coca-Cola",
+            "precio": 30
+        },
+        {
+            "producto": "Pelota",
+            "precio": 55
+        },
+        {
+            "producto": "Raqueta",
+            "precio": 165
+        },
+        {
+            "producto": "Remera",
+            "precio": 190
+        }
+    ]
+}
