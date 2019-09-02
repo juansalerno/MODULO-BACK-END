@@ -3,9 +3,9 @@ import * as fs from 'fs';
 @Injectable()
 
 export class ProductoService {
-    /* ---------> OPCION 1 : ALEATORIA
+    // ---------> OPCION 1 : ALEATORIA
     private static readonly CANTIDAD_PRODUCTOS = 10;
-    public getProducto(): any { // se pone any para que tome cualquier cosa
+    public getProductos(): any { // se pone any para que tome cualquier cosa
         let productos = [];
         for (let i = 0; i < ProductoService.CANTIDAD_PRODUCTOS; i++) {
             let precio = Math.floor(Math.random() * 100)
@@ -13,13 +13,13 @@ export class ProductoService {
                 'producto_nombre': 'producto_' + i,
                 'descripcion': Math.floor(Math.random() * 100000000),
                 'precio': precio,
-                'IVA_21': precio*0.21
+                'IVA_21': precio * 0.21
             };
             productos.push(producto);
         }
         return productos;
     }
-    */
+
     /* ---------> OPCION 2 : ARREGLO EN MEMORIA CREADO EN EL CODIGO:
     public getProducto(): any {
         let productos = [
@@ -47,16 +47,16 @@ export class ProductoService {
         return productos;
     }
     */
- // ---------> OPCION 3 : ARREGLO EN MEMORIA IMPORTADO DE TXT:
-    public getProducto(): any {
+    /* ---------> OPCION 3 : ARREGLO EN MEMORIA IMPORTADO DE TXT:
+    public getProductos(): any {
         let productos = [];
         let textoImportado: string = fs.readFileSync('./src/producto/productos.txt', 'utf8');
         let arregloRows: string[] = textoImportado.split('\r\n');
         for (let i = 0; i < arregloRows.length; i++) {
             let itemsProd = arregloRows[i].split(',');
             let prod = {
-                "producto_nombre":itemsProd[0],
-                "descripcion":itemsProd[1],
+                "producto_nombre": itemsProd[0],
+                "descripcion": itemsProd[1],
                 "precio": parseInt(itemsProd[2]),
                 "IVA_21": parseFloat(itemsProd[3])
             }
@@ -64,4 +64,24 @@ export class ProductoService {
         }
         return productos;
     }
+*/
+
+    //para obtener productos determinados por parametros:
+    public getProducto(p1: number, p2: number, p3: number, p4: number): any {
+        let productos = [];
+        for (let i = 0; i < ProductoService.CANTIDAD_PRODUCTOS; i++) {
+            if (i == p1 || i == p2 || i == p3 || i == p4) {
+                let precio = Math.floor(Math.random() * 100);
+                let producto = {
+                    'producto_nombre': 'producto_' + i,
+                    'descripcion': Math.floor(Math.random() * 100000000),
+                    'precio': precio,
+                    'IVA_21': precio * 0.21
+                }
+                productos.push(producto);
+            }
+        }
+        return productos;
+    }
+
 }

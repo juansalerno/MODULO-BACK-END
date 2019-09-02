@@ -5,6 +5,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ProductoController } from './producto/producto.controller';
 import { ProductoService } from './producto/producto.service';
+import { CalculadoraController } from './calculadora/calculadora.controller';
+import { CalculadoraService } from './calculadora/calculadora.service';
 
 @Module({
   imports: [
@@ -12,7 +14,7 @@ import { ProductoService } from './producto/producto.service';
       rootPath: join(__dirname, '..', 'client'),
     }),
   ],
-  controllers: [AppController, ProductoController],
-  providers: [AppService, ProductoService],
+  controllers: [AppController, ProductoController, CalculadoraController],
+  providers: [AppService, ProductoService, CalculadoraService],
 })
 export class AppModule { }
