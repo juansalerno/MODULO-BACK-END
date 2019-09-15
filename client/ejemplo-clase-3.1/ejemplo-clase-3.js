@@ -9,21 +9,38 @@ let compras = [];
 
 load();
 
-function agregar() {
+async function agregar() {
     console.log("Funcion Agregar");
     let producto = document.querySelector('#producto').value;
     let precio =
         parseInt(document.querySelector('#precio').value);
-    let descripcion = document.querySelector('#descrip').value;    
     let renglon = {
-        "producto_nombre": producto,
-        "descripcion": descripcion,
-        "precio": precio,
-        "IVA_21": precio * 0.21
+        "nombreProducto": producto,
+        "precio": precio
     }
+    document.querySelector('#producto').value = "";
+    document.querySelector('#precio').value = "";
     compras.push(renglon);
     mostrarTablaCompras();
+
+    let response = await fetch("/ejemploClase3", {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(renglon)
+    })
+    if (response.ok) {
+        let json = await response.text();
+        if (json != "ok") {
+            // alert("error en datos");
+            compras.pop();
+            mostrarTablaCompras();
+        }
+    }
 }
+
+//setInterval(load, 250);
 
 function sumar() {
     console.log("Funcion Sumar");
@@ -46,38 +63,40 @@ function mostrarTablaCompras() {
     for (let r of compras) {
         html += `
             <tr>
-            <td>${r.producto_nombre}</td>
-            <td>${r.descripcion}</td>
+            <td>${r.nombreProducto}</td>
             <td>${r.precio}</td>
-            <td>${r.IVA_21}</td>
             </tr>
             `;
     }
     document.querySelector("#tblCompras").innerHTML = html;
 }
 
+function mostrarCompra(compra) {
+    let html = `
+            <tr>
+            <td>${compra.nombreProducto}</td>
+            <td>${compra.precio}</td>
+            </tr>
+            `;
+    document.querySelector("#tblCompras").innerHTML = html;
+}
 async function load() {
     /*try {
-        let r = await fetch('/carrito-compras/mock.json'); -->primer paso (desde archivo y no desde URL)
-        let r = await fetch('/productos');
+        let r = await fetch('/ejemplo-clase-3.1/mock.json');// -->primer paso (desde archivo y no desde URL)
+        //let r = await fetch('/productos');
         let json = await r.json();
-        compras = json //.compras --> primer paso;
+        compras = json.compras
         mostrarTablaCompras()
     }
     catch (error) {
         alert(error.message);
     }
-    */ 
-   try {
+*/
+    try {
         let posicion = document.querySelector('#posicion').value;
         let p = posicion.split(" ");
         document.querySelector('#posicion').value = "";
-        let r = null;
-        if (posicion != "") {
-            r = await fetch(`/productos/${p[0]}/${p[1]}/${p[2]}/${p[3]}`);
-        } else {
-            r = await fetch("/productos");
-        }
+        let r = await fetch("/ejemploClase3");
         let json = await r.json();
         compras = json;
         //Comun a ambas versiones arma el html de la tabla
@@ -85,19 +104,18 @@ async function load() {
     } catch (err) {
         alert(err.message);
     }
-    
 }
 
 async function posicion() {
     try {
         let posicion = document.querySelector('#posicion').value;
-        let p = posicion.split(" ");
         document.querySelector('#posicion').value = "";
-        let r = await fetch(`/productos/${p[0]}/${p[1]}/${p[2]}/${p[3]}`);
+        let r = await fetch(`/ejemploClase3/${posicion}`);
         let json = await r.json();
-        compras = json;
+        //compras = json;
         //Comun a ambas versiones arma el html de la tabla
-        mostrarTablaCompras();
+        mostrarCompra(json);
+
     } catch (err) {
         alert(err.message);
     }

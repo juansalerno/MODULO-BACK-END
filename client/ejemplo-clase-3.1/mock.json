@@ -1,21 +1,21 @@
 {
-    "response": "OK",
+    "status": "OK",
     "compras": [
         {
-            "producto": "Coca-Cola",
+            "nombreProducto": "Coca-Cola",
             "precio": 30
         },
         {
-            "producto": "Pelota",
+            "nombreProducto": "Pelota",
             "precio": 55
         },
         {
-            "producto": "Raqueta",
+            "nombreProducto": "Raqueta",
             "precio": 165
         },
         {
-            "producto": "Remera",
+            "nombreProducto": "Remera",
             "precio": 190
         }
     ]
-}
+    }
