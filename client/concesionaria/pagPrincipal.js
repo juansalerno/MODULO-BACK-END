@@ -97,40 +97,6 @@ async function agregar() {
     }
 }
 
-/*async function mostrarTablaVehiculosTotales() {
-    let response5 = await fetch('/concesionaria');
-    let json = await response5.json();
-    vehiculos = json;
-    let html = '';
-    for (let r of vehiculos) {
-        if (r.tipo == 'A') {
-            html += `
-        <tr>
-        <td>${r.tipo}</td>
-        <td>${r.marca}</td>
-        <td>${r.modelo}</td>
-        <td>${r.patente}</td>
-        <td>${r.year}</td>
-        <td>${r.precio}</td>
-        <td>${r.capacidadBaul}</td>
-        </tr>`
-        }
-        if (r.tipo == 'C') {
-            html += `
-        <tr>
-        <td>${r.tipo}</td>
-        <td>${r.marca}</td>
-        <td>${r.modelo}</td>
-        <td>${r.patente}</td>
-        <td>${r.year}</td>
-        <td>${r.precio}</td>
-        <td>${r.capacidadCarga}</td>
-        </tr>`
-        }
-    }
-    document.querySelector('#tblVehiculos').innerHTML = html;
-}
-*/
 async function mostrarSoloAutos() {
     let response3 = await fetch('/concesionaria/autos');
     let json = await response3.json();
