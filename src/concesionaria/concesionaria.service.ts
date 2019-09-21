@@ -38,6 +38,10 @@ export class ConcesionariaService {
         return listadoCamionetas;
     }
 
+    public getPorPosicion(pos: number): Vehiculo {
+        return this.listadoVehiculos[pos];
+    }
+
     public create(veh: any) {
         console.log("VEHICULO: ");
         console.log(veh);
@@ -82,6 +86,35 @@ export class ConcesionariaService {
 
     }
 
+    public deletePorPosicion(id: number): string {
+        let removed = this.listadoVehiculos.splice(id, 1);
+        this.persistirLista()
+        if(removed.length == 1) return 'ok';
+    }
+
+    private persistirLista() {
+        fs.writeFileSync(`src/concesionaria/vehiculos.cvs`, '', 'utf8');
+        let i = 0;
+        for (let p of this.listadoVehiculos) {
+            if (i > 0) {
+                if (p instanceof Auto) {
+                    fs.appendFileSync(`src/concesionaria/vehiculos.cvs`, `\r\n${p.getTipo()}, ${p.getMarca()}, ${p.getModelo()}, ${p.getPatente()}, ${p.getYear()}, ${p.getPrecio()}, ${p.getCapacidadBaul()} `, 'utf8');
+                }
+                else if (p instanceof Camioneta) {
+                    fs.appendFileSync(`src/concesionaria/vehiculos.cvs`, `\r\n${p.getTipo()}, ${p.getMarca()}, ${p.getModelo()}, ${p.getPatente()}, ${p.getYear()}, ${p.getPrecio()}, ${p.getCapacidadCarga()} `, 'utf8');
+                }
+            }
+            else {
+                if (p instanceof Auto) {
+                    fs.appendFileSync(`src/concesionaria/vehiculos.cvs`, `${p.getTipo()}, ${p.getMarca()}, ${p.getModelo()}, ${p.getPatente()}, ${p.getYear()}, ${p.getPrecio()}, ${p.getCapacidadBaul()} `, 'utf8');
+                }
+                else if (p instanceof Camioneta) {
+                    fs.appendFileSync(`src/concesionaria/vehiculos.cvs`, `${p.getTipo()}, ${p.getMarca()}, ${p.getModelo()}, ${p.getPatente()}, ${p.getYear()}, ${p.getPrecio()}, ${p.getCapacidadCarga()} `, 'utf8');
+                }
+            }
+            i++;
+        }
+    }
 
     private loadVehiculos() {
         let archivo = fs.readFileSync('./src/concesionaria/vehiculos.cvs', 'utf-8');

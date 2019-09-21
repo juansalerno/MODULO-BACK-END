@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./codigo-mauricio.css">
+</head>
+<body>
+  <h1>Carrito</h1>
+  <p>Ejemplo de arreglo de objetos en JS.</p>
+  <div>
+    <div>
+      <input type="text" class="txt" name="" value="" id="producto">
+      <input type="text" class="num" name="" value="" id="precio">
+      <input type="text" class="txt" name="" value="" id="descripcion">
+      <input type="text" class="num" name="" value="" id="iva">
+      <button type="button" id="btnAgregar">A</button>
+      <button type="button" id="btnEliminar">B</button>
+      <button type="button" id="btnModificar">M</button>
+      <input type="text" class="txt" name="" value="" id="clave">
+      <button type="button" id=btnConsultar>C</button>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <td class="sel"><input type="checkbox" class="" name="" value="" id="chkSelTodos"></td>
+            <td class="txt">Producto</td>
+            <td class="num">Precio</td>
+            <td class="txt">Descripcion</td>
+            <td class="num">IVA</td>          
+            <td colspan=2 class="num">Acciones</td>          
+          </tr>
+        </thead>
+        <tbody id="tblCompras">
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="paralelo"><button type="button" id=btnTotal>∑</button></div>        
+      <div class="paralelo" id="total"></div>
+    </div>
+  </div>
+  <script src="./codigo-mauricio.js"></script>
+</body>
+</html>

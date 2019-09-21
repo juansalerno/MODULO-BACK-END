@@ -1,0 +1,36 @@
+/* html { */
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+/* } */
+div {
+    border: 1px solid black;
+}
+div.paralelo {
+    border: none;
+    display: inline-block;      
+}
+td.sel{
+    border: 1px solid green;
+    width: 30px;
+}
+td.txt{
+    border: 1px solid green;
+    width: 150px;
+}
+td.num{
+    border: 1px solid green;
+    width: 50px;
+}
+input.txt {
+    border: 1px solid green;
+    width: 150px;
+}
+input.num {
+    border: 1px solid green;
+    width: 50px;
+}
+p.total {
+    font-size: small;
+}
+.oculto {
+    visibility: hidden;
+}
