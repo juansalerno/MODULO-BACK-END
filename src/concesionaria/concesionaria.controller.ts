@@ -37,4 +37,9 @@ export class ConcesionariaController {
     public deletePorPosicion(@Param('id') pos): string {
         return this.concesionariaService.deletePorPosicion(parseInt(pos));
     }
+
+    @Put(':id')
+    public updatePorPosicion(@Param('id') pos, @Body() veh: any): string {
+        return this.concesionariaService.updatePorPosicion(parseInt(pos), veh);
+    }
 }

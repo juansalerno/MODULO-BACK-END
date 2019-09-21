@@ -92,6 +92,20 @@ export class ConcesionariaService {
         if(removed.length == 1) return 'ok';
     }
 
+    public updatePorPosicion(pos, veh): string {
+        let tipo = veh['tipo'];
+        if(tipo == "A") {
+            let vehiculoActualizado = new Auto(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadBaul']));
+            this.listadoVehiculos[pos] = vehiculoActualizado;
+        }
+        else if (tipo == "C") {
+            let vehiculoActualizado = new Camioneta(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadCarga']))
+            this.listadoVehiculos[pos] = vehiculoActualizado;
+        }
+        this.persistirLista();
+        return 'ok';
+    }
+
     private persistirLista() {
         fs.writeFileSync(`src/concesionaria/vehiculos.cvs`, '', 'utf8');
         let i = 0;
