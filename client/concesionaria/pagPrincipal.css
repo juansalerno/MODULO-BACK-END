@@ -5,3 +5,15 @@ html {
 .oculto {
     visibility: hidden;
 }
+
+td, th {
+    text-align: center;
+}
+
+.display {
+    display: none;
+}
+
+#btnAgregarVehiculo{
+    padding: 6px;
+}
