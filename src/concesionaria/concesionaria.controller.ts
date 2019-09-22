@@ -23,10 +23,10 @@ export class ConcesionariaController {
         return this.concesionariaService.getCamionetas();
     }
 
-    //@Get(':id')
-    //public getPorPosicion(@Param('id') pos): any {
-    //return this.concesionariaService.getPorPosicion(parseInt(pos));
-    //}
+    @Get('pos/:index')
+    public getPorPosicion(@Param('index') pos): any {
+    return this.concesionariaService.getPorPosicion(parseInt(pos));
+    }
 
     @Post()
     public create(@Body() veh: any): string {

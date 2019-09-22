@@ -39,9 +39,11 @@ export class ConcesionariaService {
     }
 
     public getPorPosicion(pos: number): any {
-        return this.listadoVehiculos[pos];
+        if(pos>=0 && pos<=this.listadoVehiculos.length) {
+            return this.listadoVehiculos[pos];
+        }
     }
-
+      
     public create(veh: any) {
         console.log("VEHICULO: ");
         console.log(veh);
@@ -54,7 +56,7 @@ export class ConcesionariaService {
         let year = veh['year'];
         let precio = veh['precio'];
         switch (tipo) {
-            case 'A':
+            case 'AUTO':
                 let capBaul = veh['capacidadBaul'];
                 if (marca && modelo && patente && year > 0 && precio > 0 && capBaul > 0) {
                     let auto = new Auto(tipo, marca, modelo, patente, year, precio, capBaul);
@@ -69,7 +71,7 @@ export class ConcesionariaService {
                     return 'ok';
                 }
                 break;
-            case 'C':
+            case 'CAMIONETA':
                 let capCarga = veh['capacidadCarga'];
                 if (marca && modelo && patente && year > 0 && precio > 0 && capCarga > 0) {
 
@@ -99,11 +101,11 @@ export class ConcesionariaService {
 
     public updatePorPosicion(pos, veh): string {
         let tipo = veh['tipo'];
-        if (tipo == "A") {
+        if (tipo == "AUTO") {
             let vehiculoActualizado = new Auto(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadBaul']));
             this.listadoVehiculos[pos] = vehiculoActualizado;
         }
-        else if (tipo == "C") {
+        else if (tipo == "CAMIONETA") {
             let vehiculoActualizado = new Camioneta(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadCarga']))
             this.listadoVehiculos[pos] = vehiculoActualizado;
         }
@@ -146,11 +148,11 @@ export class ConcesionariaService {
         }
         this.listadoVehiculos = [];
         for (let i = 0; i < elementos.length; i++) {
-            if (elementos[i][0] == 'A') {
+            if (elementos[i][0] == 'AUTO') {
                 let auto = new Auto(elementos[i][0], elementos[i][1], elementos[i][2], elementos[i][3], parseInt(elementos[i][4]), parseInt(elementos[i][5]), parseInt(elementos[i][6]));
                 this.listadoVehiculos.push(auto);
             }
-            if (elementos[i][0] == 'C') {
+            if (elementos[i][0] == 'CAMIONETA') {
                 let camioneta = new Camioneta(elementos[i][0], elementos[i][1], elementos[i][2], elementos[i][3], parseInt(elementos[i][4]), parseInt(elementos[i][5]), parseInt(elementos[i][6]));
                 this.listadoVehiculos.push(camioneta);
             }

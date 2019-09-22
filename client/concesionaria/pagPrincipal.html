@@ -8,24 +8,27 @@
      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  -->
         <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  -->
      <link rel="stylesheet" href="../css/boot/bootstrap.css">
-     <link rel="stylesheet" href="pagPrincipal.css"> 
+     <link rel="stylesheet" href="./pagPrincipal.css"> 
     </head>
 <body>
     <h1>Registro de Vehiculos</h1>
-    <p>Ingreso:</p>
-    
-
-     <div class="dropdown">
-        <span>Tipo de Vehículo:  </span> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" 
-             aria-haspopup="true" aria-expanded="false"> 
-             Elegir 
-        </button> 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2"> 
-             <button class="dropdown-item" type="button" id="btnEleccionTipo">Auto</button> 
+    <h3>Ingreso de Vehiculos al Sistema:</h3>
+    <label for="tipo">Elegir Tipo:</label>
+    <select name="" id="tipo">
+        <option value="AUTO">Auto</option>
+        <option value="CAMIONETA">Camioneta</option>
+    </select>
+     <!-- <div class="dropdown"> -->
+        <!-- <span>Tipo de Vehículo:  </span> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"  -->
+             <!-- aria-haspopup="true" aria-expanded="false">  -->
+             <!-- Elegir  -->
+        <!-- </button>  -->
+        <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">  -->
+             <!-- <button class="dropdown-item" type="button" id="btnEleccionTipo">Auto</button> 
              <button class="dropdown-item" type="button" id="btnEleccionTipo">Camioneta</button> 
          </div> 
-     </div> 
-     <p id="tipoVehiculo"></p> 
+     </div>  -->
+     <!-- <span id="tipoVehiculo"></span>  -->
      <input type="hidden" name="" value="" id="pos-elem"> 
      <input type="text" placeholder="marca" id="marca"> 
      <input type="text" placeholder="modelo" name="" value="" id="modelo"> 
@@ -34,15 +37,17 @@
      <input type="text" placeholder="precio" name="" value="" id="precio"> 
      <input type="text" placeholder="capacidad" name="" value="" id="capacidad"> 
     
-     <button type="button" id="btnAgregarVehiculo">Agregar</button> 
-     <button id="btnEnvioEditar" class="oculto">Editar</button> 
+     <button type="button" class="btn btn-success" id="btnAgregarVehiculo">Agregar</button> 
+     <button type="button" class="display btn btn-primary" id="btnEnvioEditar" >Editar</button> 
     
-    <p>--------------------------------------------------------------------------</p>
+     <div>
+         <p></p>
+     </div>
 
-    <p>Listado Vehiculos Ingresados:</p>
+    <h3>Listado actual de Vehiculos:</h3>
     <table class="table table-striped">
         <thead>
-            <th th scope="col">Tipo ("A" es auto, "C" es camioneta)</th>
+            <th th scope="col">Tipo</th>
             <th th scope="col">Marca</th>
             <th th scope="col">Modelo</th>
             <th th scope="col">Patente</th>
@@ -53,10 +58,11 @@
         <tbody id="tblVehiculos"></tbody>
     </table>
 
-    <button type="button" id="btnVerSoloAutos">Filtrar: ver autos</button>
-    <button type="button" id="btnVerSoloCamionetas">Filtrar: ver camionetas</button>
-    <button type="button" id="btnVerVehiculosTodos">Ver todos los vehículos</button>
-    <input type="text" placeholder="ver i-ésimo" id="i-esimoAMostrar"> <button id="verI-esimo">Ver</button>
+    <button type="button" class="btn btn-info" id="btnVerSoloAutos">Filtrar: ver autos</button>
+    <button type="button" class="btn btn-info" id="btnVerSoloCamionetas">Filtrar: ver camionetas</button>
+    <button type="button" class="btn btn-info" id="btnVerVehiculosTodos">Ver todos los vehículos</button>
+    <input type="text" placeholder="ver i-ésimo" id="iEsimoAMostrar"> <button type="button" class="btn btn-info" id="verIEsimo">Ver</button> 
+    
     <table>
         <tbody id="tblFiltradaVehiculos"></tbody>
     </table>
