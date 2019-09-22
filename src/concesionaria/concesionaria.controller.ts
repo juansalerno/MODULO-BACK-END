@@ -13,21 +13,21 @@ export class ConcesionariaController {
         return this.concesionariaService.getVehiculos();
     }
 
-    @Get('/listar/autos')
+    @Get('autos')
     public getAutos(): Auto[] {
         return this.concesionariaService.getAutos();
     }
 
-    @Get('/listar/camionetas')
+    @Get('camionetas')
     public getCamionetas(): Camioneta[] {
         return this.concesionariaService.getCamionetas();
     }
 
-    /*@Get(':id')
-    public getPorPosicion(@Param('id') pos) {
-    return this.concesionariaService.getPorPosicion(parseInt(pos));
-    }
-*/
+    //@Get(':id')
+    //public getPorPosicion(@Param('id') pos): any {
+    //return this.concesionariaService.getPorPosicion(parseInt(pos));
+    //}
+
     @Post()
     public create(@Body() veh: any): string {
         return this.concesionariaService.create(veh);

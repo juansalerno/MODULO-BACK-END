@@ -38,7 +38,7 @@ export class ConcesionariaService {
         return listadoCamionetas;
     }
 
-    public getPorPosicion(pos: number): Vehiculo {
+    public getPorPosicion(pos: number): any {
         return this.listadoVehiculos[pos];
     }
 
