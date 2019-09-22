@@ -13,40 +13,42 @@
 <body>
     <h1>Registro de Vehiculos</h1>
     <p>Ingreso:</p>
-    <div class="dropdown">
-        <span>Tipo de Vehículo:  </span> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Elegir
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button" id="btnEleccionTipo">Auto</button>
-            <button class="dropdown-item" type="button" id="btnEleccionTipo">Camioneta</button>
-        </div>
-    </div>
-    <p id="tipoVehiculo"></p>
-    <input type="hidden" name="" value="" id="pos-elem">
-    <input type="text" placeholder="marca" id="marca">
-    <input type="text" placeholder="modelo" name="" value="" id="modelo">
-    <input type="text" placeholder="patente" name="" value="" id="patente">
-    <input type="text" placeholder="año" name="" value="" id="año">
-    <input type="text" placeholder="precio" name="" value="" id="precio">
-    <input type="text" placeholder="capacidad" name="" value="" id="capacidad">
     
-    <button type="button" id="btnAgregarVehiculo">Agregar</button>
-    <button id="btnEnvioEditar" class="oculto">Editar</button>
+
+     <div class="dropdown">
+        <span>Tipo de Vehículo:  </span> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" 
+             aria-haspopup="true" aria-expanded="false"> 
+             Elegir 
+        </button> 
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2"> 
+             <button class="dropdown-item" type="button" id="btnEleccionTipo">Auto</button> 
+             <button class="dropdown-item" type="button" id="btnEleccionTipo">Camioneta</button> 
+         </div> 
+     </div> 
+     <p id="tipoVehiculo"></p> 
+     <input type="hidden" name="" value="" id="pos-elem"> 
+     <input type="text" placeholder="marca" id="marca"> 
+     <input type="text" placeholder="modelo" name="" value="" id="modelo"> 
+     <input type="text" placeholder="patente" name="" value="" id="patente"> 
+     <input type="text" placeholder="año" name="" value="" id="año"> 
+     <input type="text" placeholder="precio" name="" value="" id="precio"> 
+     <input type="text" placeholder="capacidad" name="" value="" id="capacidad"> 
+    
+     <button type="button" id="btnAgregarVehiculo">Agregar</button> 
+     <button id="btnEnvioEditar" class="oculto">Editar</button> 
     
     <p>--------------------------------------------------------------------------</p>
 
     <p>Listado Vehiculos Ingresados:</p>
-    <table>
+    <table class="table table-striped">
         <thead>
-            <td>Tipo ("A" es auto, "C" es camioneta)</td>
-            <td>Marca</td>
-            <td>Modelo</td>
-            <td>Patente</td>
-            <td>Año</td>
-            <td>Precio</td>
-            <td>Capacidad Baúl / Capacidad Carga (en litros)</td>
+            <th th scope="col">Tipo ("A" es auto, "C" es camioneta)</th>
+            <th th scope="col">Marca</th>
+            <th th scope="col">Modelo</th>
+            <th th scope="col">Patente</th>
+            <th th scope="col">Año</th>
+            <th th scope="col">Precio</th>
+            <th th scope="col">Capacidad Baúl/Carga (en lts)</th>
         </thead>
         <tbody id="tblVehiculos"></tbody>
     </table>

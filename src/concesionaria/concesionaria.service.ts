@@ -55,28 +55,33 @@ export class ConcesionariaService {
         let precio = veh['precio'];
         switch (tipo) {
             case 'A':
-                if (marca && modelo && patente && year && precio > 0) {
-                    let capBaul = veh['capacidadBaul'];
+                let capBaul = veh['capacidadBaul'];
+                if (marca && modelo && patente && year > 0 && precio > 0 && capBaul > 0) {
                     let auto = new Auto(tipo, marca, modelo, patente, year, precio, capBaul);
                     this.listadoVehiculos.push(auto);
                     console.log(auto);
-                    fs.appendFileSync('./src/concesionaria/vehiculos.cvs',
+                    this.persistirLista();
+                    /*fs.appendFileSync('./src/concesionaria/vehiculos.cvs',
                         '\n' + auto.getTipo() + ', ' +
                         auto.getMarca() + ', ' + auto.getModelo() + ', ' + auto.getPatente()
                         + ', ' + auto.getYear() + ', ' + auto.getPrecio() + ', ' + auto.getCapacidadBaul())
+                    */
                     return 'ok';
                 }
                 break;
             case 'C':
-                if (marca && modelo && patente && year && precio > 0) {
-                    let capCarga = veh['capacidadCarga'];
+                let capCarga = veh['capacidadCarga'];
+                if (marca && modelo && patente && year > 0 && precio > 0 && capCarga > 0) {
+
                     let camioneta = new Camioneta(tipo, marca, modelo, patente, year, precio, capCarga);
                     this.listadoVehiculos.push(camioneta);
                     console.log(camioneta);
-                    fs.appendFileSync('./src/concesionaria/vehiculos.cvs',
+                    this.persistirLista();
+                    /* fs.appendFileSync('./src/concesionaria/vehiculos.cvs',
                         '\n' + camioneta.getTipo() + ', ' +
                         camioneta.getMarca() + ', ' + camioneta.getModelo() + ', ' + camioneta.getPatente()
                         + ', ' + camioneta.getYear() + ', ' + camioneta.getPrecio() + ', ' + camioneta.getCapacidadCarga())
+                    */
                     return 'ok';
                 }
                 break;
@@ -89,12 +94,12 @@ export class ConcesionariaService {
     public deletePorPosicion(id: number): string {
         let removed = this.listadoVehiculos.splice(id, 1);
         this.persistirLista()
-        if(removed.length == 1) return 'ok';
+        if (removed.length == 1) return 'ok';
     }
 
     public updatePorPosicion(pos, veh): string {
         let tipo = veh['tipo'];
-        if(tipo == "A") {
+        if (tipo == "A") {
             let vehiculoActualizado = new Auto(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadBaul']));
             this.listadoVehiculos[pos] = vehiculoActualizado;
         }

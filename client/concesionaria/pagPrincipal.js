@@ -69,6 +69,7 @@ async function agregar() {
                 let json = await response1.text();
                 if (json != 'ok') {
                     vehiculos.pop(renglon1);
+                    alert('El año, precio y la capacidad del baúl no pueden ser negativos, por favor reingrese los datos');
                     mostrarTablaVehiculos()
                 }
             }
@@ -98,6 +99,7 @@ async function agregar() {
                 let json = await response2.text();
                 if (json != 'ok') {
                     vehiculos.pop(renglon2);
+                    alert('El año, precio y la capacidad de la carga no pueden ser negativos, por favor reingrese los datos');
                     mostrarTablaVehiculos()
                 }
             }
@@ -212,10 +214,11 @@ async function btnBorrarClick() {
         document.querySelector('#capacidad').value = r.capacidadCarga;
     }
    
-    document.querySelector('.btn-editar-vehiculo').classList.add("oculto");
+    this.classList.add("oculto");
     document.querySelector('#btnAgregarVehiculo').classList.add("oculto");
     document.querySelector('#btnEnvioEditar').classList.remove("oculto");
-    
+    let botonesBorrar = document.querySelectorAll(".btn-delete-vehiculo");
+    botonesBorrar[pos].classList.add("oculto");
 }
 
 async function envioEditar() {
@@ -293,7 +296,7 @@ async function envioEditar() {
             break;
         default: null;
     }
-    
+
     document.querySelector('#tipoVehiculo').innerHTML = '';
     document.querySelector('#pos-elem').value = '';
     document.querySelector('#marca').value = '';
