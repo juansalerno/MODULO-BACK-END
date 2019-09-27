@@ -39,11 +39,32 @@ export class ConcesionariaService {
     }
 
     public getPorPosicion(pos: number): any {
-        if(pos>=0 && pos<=this.listadoVehiculos.length) {
-            return this.listadoVehiculos[pos];
+        try {
+
+            if (pos > 0 && pos <= this.listadoVehiculos.length) {
+                console.log(this.listadoVehiculos[pos - 1]);
+                return this.listadoVehiculos[pos - 1];
+            }
+        }
+        catch (err) {
+            throw new Error('Error de consulta')
+        }
+
+    }
+
+    public getPorDominio(dom: string): any {
+        try {
+            for (let i = 0; i < this.listadoVehiculos.length; i++) {
+                if (dom.toLowerCase().replace(' ', '').replace(' ', '') == (this.listadoVehiculos[i].getPatente()).trim().toLowerCase().replace(' ', '').replace(' ', '')) {
+                    return this.listadoVehiculos[i];
+                }
+            }
+        }
+        catch (err) {
+            throw new Error('Error de consulta')
         }
     }
-      
+
     public create(veh: any) {
         console.log("VEHICULO: ");
         console.log(veh);
@@ -101,16 +122,33 @@ export class ConcesionariaService {
 
     public updatePorPosicion(pos, veh): string {
         let tipo = veh['tipo'];
-        if (tipo == "AUTO") {
-            let vehiculoActualizado = new Auto(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadBaul']));
-            this.listadoVehiculos[pos] = vehiculoActualizado;
+        let marca = veh['marca'];
+        let modelo = veh['modelo'];
+        let patente = veh['patente'];
+        let year = veh['year'];
+        let precio = veh['precio'];
+        switch (tipo) {
+            case "AUTO":
+                let capBaul = veh['capacidadBaul'];
+                if (marca && modelo && patente && year > 0 && precio > 0 && capBaul > 0) {
+                    let vehiculoActualizado = new Auto(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadBaul']));
+                    this.listadoVehiculos[pos] = vehiculoActualizado;
+                    this.persistirLista();
+                    return 'ok';
+                }
+                break;
+            case "CAMIONETA":
+                let capCarga = veh['capacidadCarga'];
+                if (marca && modelo && patente && year > 0 && precio > 0 && capCarga > 0) {
+                    let vehiculoActualizado = new Camioneta(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadCarga']))
+                    this.listadoVehiculos[pos] = vehiculoActualizado;
+                    this.persistirLista();
+                    return 'ok';
+                }
+                break;
+            default: 'Tipo incorrecto';
         }
-        else if (tipo == "CAMIONETA") {
-            let vehiculoActualizado = new Camioneta(veh['tipo'], veh['marca'], veh['modelo'], veh['patente'], veh['year'], veh['precio'], parseInt(veh['capacidadCarga']))
-            this.listadoVehiculos[pos] = vehiculoActualizado;
-        }
-        this.persistirLista();
-        return 'ok';
+        return 'Parametros incorrectos';
     }
 
     private persistirLista() {

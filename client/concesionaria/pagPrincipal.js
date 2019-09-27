@@ -1,7 +1,5 @@
 'use strict';
 
-//import { response } from "express";
-
 let btnsEleccionTipo = document.querySelectorAll("#btnEleccionTipo");
 for (let i = 0; i < btnsEleccionTipo.length; i++) {
     btnsEleccionTipo[i].addEventListener('click', function (e) {
@@ -33,6 +31,9 @@ btnVerIesimo.addEventListener('click', mostrarIEsimo);
 
 let btnEnvioEditar = document.querySelector("#btnEnvioEditar");
 btnEnvioEditar.addEventListener("click", envioEditar);
+
+let btnVerPorDominio = document.querySelector("#btnVerPorDominio");
+btnVerPorDominio.addEventListener("click", mostrarPorDominio);
 
 let vehiculos = [];
 
@@ -132,6 +133,8 @@ async function mostrarSoloAutos() {
     });
     document.querySelector('#iEsimoAMostrar').classList.add('oculto');
     document.querySelector('#verIEsimo').classList.add('oculto');
+    document.querySelector('#dominioElegido').classList.add('oculto');
+    document.querySelector('#btnVerPorDominio').classList.add('oculto');
 }
 
 async function mostrarSoloCamionetas() {
@@ -147,6 +150,8 @@ async function mostrarSoloCamionetas() {
     });
     document.querySelector('#iEsimoAMostrar').classList.add('oculto');
     document.querySelector('#verIEsimo').classList.add('oculto');
+    document.querySelector('#dominioElegido').classList.add('oculto');
+    document.querySelector('#btnVerPorDominio').classList.add('oculto');
 }
 
 function mostrarTablaVehiculos() {
@@ -200,27 +205,32 @@ function mostrarTablaVehiculos() {
 
     document.querySelector('#iEsimoAMostrar').classList.remove('oculto');
     document.querySelector('#verIEsimo').classList.remove('oculto');
+    document.querySelector('#dominioElegido').classList.remove('oculto');
+    document.querySelector('#btnVerPorDominio').classList.remove('oculto');
 }
 
 
 
 async function btnBorrarClick() {
     let pos = this.getAttribute("pos");
-    let response6 = await fetch(`/concesionaria/${pos}`, {
-        "method": "DELETE",
-        "headers": {
-            "Content-Type": "application/json"
+    let opcion = confirm("Está seguro que desea borrar este vehículo?");
+    if (opcion == true) {
+
+        let response6 = await fetch(`/concesionaria/${pos}`, {
+            "method": "DELETE",
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        })
+
+        if (response6.ok) {
+            load();
         }
-    })
-    if (response6.ok) {
-        load();
     }
 }
 
 function btnEditarClick() {
     let pos = this.getAttribute("pos");
-    //let response7 = await fetch(`/concesionaria/${pos}`);
-    //let json = response7.json();
 
     let r = vehiculos[pos];
 
@@ -241,11 +251,11 @@ function btnEditarClick() {
     }
 
     let btnsEditarNoPresionados = document.querySelectorAll('.btn-editar-vehiculo');
-    btnsEditarNoPresionados.forEach(b=>{
+    btnsEditarNoPresionados.forEach(b => {
         b.classList.remove('oculto');
     })
     let btnsBorrarNoPresionados = document.querySelectorAll('.btn-delete-vehiculo');
-    btnsBorrarNoPresionados.forEach(d=>{
+    btnsBorrarNoPresionados.forEach(d => {
         d.classList.remove('oculto');
     })
     this.classList.add("oculto");
@@ -279,8 +289,8 @@ async function envioEditar() {
                 "precio": precio,
                 "capacidadBaul": capacidadBaul
             }
-            //vehiculos.push(renglon1);
-            //mostrarTablaVehiculos();
+            vehiculos.push(renglon1);
+            mostrarTablaVehiculos();
 
             let response9 = await fetch(`/concesionaria/${pos}`, {
                 "method": "PUT",
@@ -289,15 +299,16 @@ async function envioEditar() {
                 },
                 "body": JSON.stringify(renglon1)
             })
-            /*if (response9.ok) {
+            if (response9.ok) {
                 let json = await response9.text();
                 if (json != 'ok') {
                     vehiculos.pop(renglon1);
+                    alert('El año, precio y la capacidad de la carga no pueden ser negativos');
                     mostrarTablaVehiculos()
                 }
                 
             }
-            */
+            
             break;
         case 'CAMIONETA':
             let capacidadCarga = parseInt(document.querySelector('#capacidad').value)
@@ -310,8 +321,8 @@ async function envioEditar() {
                 "precio": precio,
                 "capacidadCarga": capacidadCarga
             }
-            //vehiculos.push(renglon2);
-            //mostrarTablaVehiculos();
+            vehiculos.push(renglon2);
+            mostrarTablaVehiculos();
 
             let response10 = await fetch(`/concesionaria/${pos}`, {
                 "method": "PUT",
@@ -320,14 +331,15 @@ async function envioEditar() {
                 },
                 "body": JSON.stringify(renglon2)
             })
-            /*if (response10.ok) {
+            if (response10.ok) {
                 let json = await response10.text();
                 if (json != 'ok') {
                     vehiculos.pop(renglon2);
+                    alert('El año, precio y la capacidad de la carga no pueden ser negativos');
                     mostrarTablaVehiculos()
                 }
             }
-            */
+            
             break;
         default: null;
     }
@@ -346,37 +358,6 @@ async function envioEditar() {
 
 }
 
-function mostrarVehiculoElegido(veh) {
-    let html = '';
-    if (veh.tipo == 'AUTO') {
-        html = `
-        <tr>
-        <td>${veh.tipo}</td>
-        <td>${veh.marca}</td>
-        <td>${veh.modelo}</td>
-        <td>${veh.patente}</td>
-        <td>${veh.year}</td>
-        <td>${veh.precio}</td>
-        <td>${veh.capacidadBaul}</td>
-        </tr>`
-    }
-    else if (veh.tipo == 'CAMIONETA') {
-        html = `
-        <tr>
-        <td>${veh.tipo}</td>
-        <td>${veh.marca}</td>
-        <td>${veh.modelo}</td>
-        <td>${veh.patente}</td>
-        <td>${veh.year}</td>
-        <td>${veh.precio}</td>
-        <td>${veh.capacidadCarga}</td>
-        </tr>`
-    }
-    document.querySelector('#tblVehiculos').innerHTML = html;
-}
-
-
-
 async function load() {
     try {
         let r = await fetch('/concesionaria');
@@ -393,10 +374,48 @@ async function mostrarIEsimo() {
     let iEsimoElegido = document.querySelector('#iEsimoAMostrar').value;
 
     let response5 = await fetch(`/concesionaria/pos/${iEsimoElegido}`);
-    let json = await response5.json();
+    try {
+        let json = await response5.json();
 
-    mostrarVehiculoElegido(json);
-    document.querySelector('#iEsimoAMostrar').value = '';
+        vehiculos = [];
+        vehiculos.push(json);
+
+        mostrarTablaVehiculos();
+
+        document.querySelector('#iEsimoAMostrar').value = '';
+        document.querySelector('#iEsimoAMostrar').classList.add('oculto');
+        document.querySelector('#verIEsimo').classList.add('oculto');
+        document.querySelector('#dominioElegido').classList.add('oculto');
+        document.querySelector('#btnVerPorDominio').classList.add('oculto');
+    }
+    catch (err) {
+        document.querySelector('#iEsimoAMostrar').value = '';
+        alert('Indice incorrecto');
+    }
+}
+
+async function mostrarPorDominio() {
+    let dominioElegido = document.querySelector('#dominioElegido').value;
+    try {
+    let response11 = await fetch(`/concesionaria/select/${dominioElegido}`);
+    console.log(response11);
+    let json = await response11.json();
+
+    console.log(json);
+
+    vehiculos = [];
+    vehiculos.push(json);
+
+    mostrarTablaVehiculos();
+
+    document.querySelector('#dominioElegido').value = '';
     document.querySelector('#iEsimoAMostrar').classList.add('oculto');
     document.querySelector('#verIEsimo').classList.add('oculto');
+    document.querySelector('#dominioElegido').classList.add('oculto');
+    document.querySelector('#btnVerPorDominio').classList.add('oculto');
+    }
+    catch(err) {
+        document.querySelector('#dominioElegido').value = '';
+        alert('Dominio no encontrado');
+    }
 }

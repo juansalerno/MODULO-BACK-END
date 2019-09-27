@@ -2,6 +2,24 @@ html {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+h1 {
+    text-align: center;
+    background-color: rgba(13, 156, 8, 0.699);
+    padding-bottom: 1%;
+    margin-bottom: 0;
+}
+
+h3 { 
+    padding-left: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.tipoInputStyle {
+margin-bottom: 0.5%;
+text-align: center;
+}
+
 .oculto {
     visibility: hidden;
 }
@@ -16,4 +34,35 @@ td, th {
 
 #btnAgregarVehiculo{
     padding: 6px;
+}
+
+.ingresoDatos{
+    background-color: rgba(208, 209, 209, 0.911);
+    font-weight: bold;
+}
+
+.extendido {
+    width: 100%;
+    
+}
+.estiloSelect {
+    margin-bottom: 4%;
+}
+
+.btnsEstilo {
+    margin-bottom: 2%;
+    margin-top: 0.5%;
+}
+
+.estiloBordes {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.btnsBusqueda {
+    background-color: 
+}
+table{
+    background-color: white;
 }

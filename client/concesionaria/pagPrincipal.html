@@ -1,76 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Concesionaria - Pagina Principal</title>
-     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  -->
-        <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  -->
-     <link rel="stylesheet" href="../css/boot/bootstrap.css">
-     <link rel="stylesheet" href="./pagPrincipal.css"> 
-    </head>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  -->
+    <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  -->
+    <link rel="stylesheet" href="../css/boot/bootstrap.css">
+    <link rel="stylesheet" href="./pagPrincipal.css">
+</head>
+
 <body>
-    <h1>Registro de Vehiculos</h1>
-    <h3>Ingreso de Vehiculos al Sistema:</h3>
-    <label for="tipo">Elegir Tipo:</label>
-    <select name="" id="tipo">
-        <option value="AUTO">Auto</option>
-        <option value="CAMIONETA">Camioneta</option>
-    </select>
-     <!-- <div class="dropdown"> -->
-        <!-- <span>Tipo de Vehículo:  </span> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"  -->
-             <!-- aria-haspopup="true" aria-expanded="false">  -->
-             <!-- Elegir  -->
-        <!-- </button>  -->
-        <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">  -->
-             <!-- <button class="dropdown-item" type="button" id="btnEleccionTipo">Auto</button> 
-             <button class="dropdown-item" type="button" id="btnEleccionTipo">Camioneta</button> 
-         </div> 
-     </div>  -->
-     <!-- <span id="tipoVehiculo"></span>  -->
-     <input type="hidden" name="" value="" id="pos-elem"> 
-     <input type="text" placeholder="marca" id="marca"> 
-     <input type="text" placeholder="modelo" name="" value="" id="modelo"> 
-     <input type="text" placeholder="patente" name="" value="" id="patente"> 
-     <input type="text" placeholder="año" name="" value="" id="año"> 
-     <input type="text" placeholder="precio" name="" value="" id="precio"> 
-     <input type="text" placeholder="capacidad" name="" value="" id="capacidad"> 
-    
-     <button type="button" class="btn btn-success" id="btnAgregarVehiculo">Agregar</button> 
-     <button type="button" class="display btn btn-primary" id="btnEnvioEditar" >Editar</button> 
-    
-     <div>
-         <p></p>
-     </div>
+    <h1 class="estiloBordes">Registro de Vehículos</h1>
 
-    <h3>Listado actual de Vehiculos:</h3>
-    <table class="table table-striped">
-        <thead>
-            <th th scope="col">Tipo</th>
-            <th th scope="col">Marca</th>
-            <th th scope="col">Modelo</th>
-            <th th scope="col">Patente</th>
-            <th th scope="col">Año</th>
-            <th th scope="col">Precio</th>
-            <th th scope="col">Capacidad Baúl/Carga (en lts)</th>
-        </thead>
-        <tbody id="tblVehiculos"></tbody>
-    </table>
+    <div class="estiloBordes ingresoDatos">
+        <h3>Ingreso de datos:</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 offset-md-3 ">
+                    <p class="tipoInputStyle">Tipo de Vehículo:</p>
+                    <select class="extendido estiloSelect" name="" id="tipo">
+                        <option value="AUTO">Auto</option>
+                        <option value="CAMIONETA">Camioneta</option>
+                    </select>
+                    <input type="hidden" name="" value="" id="pos-elem">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Marca:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Marca" id="marca" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <!-- <p>Marca: <input type="text" placeholder="marca" id="marca"></p> -->
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Modelo:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Modelo" id="modelo" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <!-- <p>Modelo: <input type="text" placeholder="modelo" name="" value="" id="modelo"></p> -->
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Patente:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Patente" id="patente" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <!-- <p>Patente:<input type="text" placeholder="patente" name="" value="" id="patente"></p> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Año:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Año" id="año" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <!-- <p>Año:<input type="text" placeholder="año" name="" value="" id="año"> -->
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Precio:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Precio" id="precio" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <!-- <p>Precio:<input type="text" placeholder="precio" name="" value="" id="precio"> -->
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Capacidad:</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Capacidad baul / carga" id="capacidad"
+                            aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <!-- <p>Cap:<input type="text" placeholder="capacidad" name="" value="" id="capacidad"> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 offset-md-3 btnsEstilo">
+                    <button type="button" class="btn btn-success extendido" id="btnAgregarVehiculo">Agregar</button>
+                    <button type="button" class="display btn btn-primary extendido"
+                        id="btnEnvioEditar">Modificar</button>
+                </div>
 
-    <button type="button" class="btn btn-info" id="btnVerSoloAutos">Filtrar: ver autos</button>
-    <button type="button" class="btn btn-info" id="btnVerSoloCamionetas">Filtrar: ver camionetas</button>
-    <button type="button" class="btn btn-info" id="btnVerVehiculosTodos">Ver todos los vehículos</button>
-    <input type="text" placeholder="ver i-ésimo" id="iEsimoAMostrar"> <button type="button" class="btn btn-info" id="verIEsimo">Ver</button> 
+            </div>
+        </div>
+    </div>
+
+    <div class="btnsBusqueda estiloBordes">
+        <h3>Listado actual de Vehiculos:</h3>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm btnsEstilo">
+                    <button type="button" class="btn btn-info" id="btnVerSoloAutos">Filtrar: ver autos</button>
+                    <button type="button" class="btn btn-info" id="btnVerSoloCamionetas">Filtrar: ver
+                        camionetas</button>
+                    <button type="button" class="btn btn-info" id="btnVerVehiculosTodos">Ver todos los
+                        vehículos</button>
+                    <input type="text" placeholder="N° en lista" id="iEsimoAMostrar"> <button type="button"
+                        class="btn btn-info" id="verIEsimo">Buscar</button>
+                    <input type="text" placeholder="Dominio a buscar" id="dominioElegido"> <button type="button"
+                        class="btn btn-info" id="btnVerPorDominio">Buscar</button>
+                </div>
+            </div>
+        </div>
     
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <table class="table table-hover table-striped table-responsive">
+                    <thead>
+                        <th th scope="col">Tipo</th>
+                        <th th scope="col">Marca</th>
+                        <th th scope="col">Modelo</th>
+                        <th th scope="col">Patente</th>
+                        <th th scope="col">Año</th>
+                        <th th scope="col">Precio</th>
+                        <th th scope="col">Capacidad Baúl/Carga (en lts)</th>
+                    </thead>
+                    <tbody id="tblVehiculos"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
     <table>
         <tbody id="tblFiltradaVehiculos"></tbody>
     </table>
-
+</div>
     <script src="./pagPrincipal.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
-        <!-- integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-        <!-- crossorigin="anonymous"></script> -->
+    <!-- integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
+    <!-- crossorigin="anonymous"></script> -->
     <script src="../css/js/jQuery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -79,4 +158,60 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
+
+<!-- <div class="dropdown"> -->
+<!-- <span>Tipo de Vehículo:  </span> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"  -->
+<!-- aria-haspopup="true" aria-expanded="false">  -->
+<!-- Elegir  -->
+<!-- </button>  -->
+<!-- <div class="dropdown-menu" aria-labelledby="dropdownMenu2">  -->
+<!-- <button class="dropdown-item" type="button" id="btnEleccionTipo">Auto</button> 
+             <button class="dropdown-item" type="button" id="btnEleccionTipo">Camioneta</button> 
+         </div> 
+     </div>  -->
+<!-- <span id="tipoVehiculo"></span>  -->
+<!-- <table class="table-responsive table-striped"> -->
+<!-- <thead> -->
+<!-- <th th scope="col">Tipo</th> -->
+<!-- <th th scope="col">Marca</th> -->
+<!-- <th th scope="col">Modelo</th> -->
+<!-- <th th scope="col">Patente</th> -->
+<!-- <th th scope="col">Año</th> -->
+<!-- <th th scope="col">Precio</th> -->
+<!-- <th th scope="col">Capacidad Baúl/Carga (en lts)</th> -->
+<!-- </thead> -->
+<!-- <tbody> -->
+<!-- <td> -->
+<!-- <label for="tipo">Elegir Tipo:</label> -->
+<!-- <select name="" id="tipo"> -->
+<!-- <option value="AUTO">Auto</option> -->
+<!-- <option value="CAMIONETA">Camioneta</option> -->
+<!-- </select> -->
+<!-- <input type="hidden" name="" value="" id="pos-elem"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <input type="text" placeholder="marca" id="marca"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <input type="text" placeholder="modelo" name="" value="" id="modelo"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <input type="text" placeholder="patente" name="" value="" id="patente"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <input type="text" placeholder="año" name="" value="" id="año"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <input type="text" placeholder="precio" name="" value="" id="precio"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <input type="text" placeholder="capacidad" name="" value="" id="capacidad"> -->
+<!-- </td> -->
+<!-- <td> -->
+<!-- <button type="button" class="btn btn-success" id="btnAgregarVehiculo">Agregar</button> -->
+<!-- <button type="button" class="display btn btn-primary" id="btnEnvioEditar">Modificar</button> -->
+<!-- </td> -->
+<!-- </tbody> -->
+<!-- </table> -->

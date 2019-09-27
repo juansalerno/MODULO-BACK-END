@@ -25,8 +25,14 @@ export class ConcesionariaController {
 
     @Get('pos/:index')
     public getPorPosicion(@Param('index') pos): any {
-    return this.concesionariaService.getPorPosicion(parseInt(pos));
+        return this.concesionariaService.getPorPosicion(parseInt(pos));
     }
+
+    @Get('select/:dominio')
+    public getPorDominio(@Param('dominio') dom): any {
+        return this.concesionariaService.getPorDominio(dom);
+    }
+
 
     @Post()
     public create(@Body() veh: any): string {
